@@ -20,7 +20,7 @@ token = readLines("secret/github_token")
 stopifnot(file.exists(account_file))
 team_info = read.csv(account_file, stringsAsFactors=FALSE)
 
-stopifnot(all(c("Name","Account","Team") %in% names(team_info)))
+stopifnot(all(c("First","Last","Email","Account") %in% names(team_info)))
 accounts = team_info$Account
 
 res = lapply(
@@ -35,7 +35,7 @@ res = lapply(
 invalid = sapply(res, function(x) any(class(x) == "try-error"))
 
 if (sum(invalid) > 0) {
-  cat("Invalid accounts:", accounts[invalid], "\n")
+    print(team_info[invalid, c("First", "Last", "Email", "Account")])
 } else {
   cat("All accounts are valid!\n")
 }
