@@ -33,5 +33,8 @@ verified issue invitations.
   organization.   Currently if there are errors in any user names the
   script crashes.
 
+  `Rscript invite_accounts.R Accounts.csv  STA521-S17`
+  
 
+* create_teams.R: 
   
