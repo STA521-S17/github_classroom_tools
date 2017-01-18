@@ -1,0 +1,38 @@
+---
+title: "analyze_teams"
+author: "Merlise Clyde"
+date: "January 17, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(magrittr)
+```
+
+## R Markdown
+
+Read in team info
+```{r read}
+accounts = read.csv("Accounts.csv", header=T) %>% 
+  select(First,Last,Email=Recipient.Email,Saxon,R.User, Bayesian, git, unix, ML, linear.alg, program, STA601, STA523, STA601) 
+summary(accounts)
+```
+
+
+```{r recode}
+accounts = accounts %>% mutate(score = 
+          as.numeric(recode_factor(unix, 
+                   `have no background` = "0",
+                   `a little` = "1", 
+                   `comfortable to advanced background` = "2")) +
+        (R.User != "have no background") +
+        (Bayesian != "have no background") + 
+        (git != "have no background") +
+        (STA601 == "Yes") +
+        (STA523 == "Yes") +
+        (ML != "have no background")
+)
+```
+

@@ -2,3 +2,7 @@ secret/
 Accounts.csv
 *~
 #*
+.Rproj.user
+.RData
+.Rhistory
+github_classroom_tools.Rproj

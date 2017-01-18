@@ -8,7 +8,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 if(length(args)!=3)
 {
-  cat("Usage: invite_accounts.R <account file> <organization> <prefix>\n")
+  cat("Usage: create_accounts.R <account file> <organization> <prefix>\n")
   stop()
 }
 
@@ -19,7 +19,7 @@ prefix = args[3]
 stopifnot(file.exists(account_file))
 team_info = read.csv(account_file, stringsAsFactors=FALSE)
 
-stopifnot(all(c("Name","Account","Team") %in% names(team_info)))
+stopifnot(all(c("Account","Team") %in% names(team_info)))
 team_info$Team = paste0(prefix, team_info$Team)
 teams = team_info$Team %>%
         unique() %>%

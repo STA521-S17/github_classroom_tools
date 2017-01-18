@@ -34,7 +34,16 @@ verified issue invitations.
   script crashes.
 
   `Rscript invite_accounts.R Accounts.csv  STA521-S17`
-  
 
-* create_teams.R: 
-  
+* analyze_teams.R:  A script to read in survey data and create a score
+  based on backgound to help with team creation.  Use this to assign a
+  Team number for each student.  Add a colum for Team to Accounts.csv
+
+* create_teams.R:  Run script to create and add Teams to github.
+
+
+ `Rscript invite_accounts.R Accounts.csv  STA521-S17 Team`
+
+or
+
+ `Rscript invite_accounts.R <Accounts file> <organization> <Team_Prefix>
