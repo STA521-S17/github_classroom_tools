@@ -16,23 +16,36 @@ library(magrittr)
 Read in team info
 ```{r read}
 accounts = read.csv("Accounts.csv", header=T) %>% 
-  select(First,Last,Email=Recipient.Email,Saxon,R.User, Bayesian, git, unix, ML, linear.alg, program, STA601, STA523, STA601) 
-summary(accounts)
+  select(First,Last,Email=Email,Saxon,R.User, Bayesian, git, unix, ML, program, STA601, STA523, STA561, Team) 
+
 ```
 
 
 ```{r recode}
-accounts = accounts %>% mutate(score = 
-          as.numeric(recode_factor(unix, 
-                   `have no background` = "0",
-                   `a little` = "1", 
-                   `comfortable to advanced background` = "2")) +
-        (R.User != "have no background") +
-        (Bayesian != "have no background") + 
-        (git != "have no background") +
-        (STA601 == "Yes") +
-        (STA523 == "Yes") +
-        (ML != "have no background")
+accounts = mutate(accounts, score = 
+          (R.User != "have no background") +
+          (Bayesian != "have no background") + 
+          (git != "have no background") +
+          (unix != "have no background") +
+          (STA601 == "Yes") +
+          (STA523 == "Yes") +
+          (STA561 == "Yes") +
+          (ML != "have no background")
 )
+
+```
+
+```{r}
+hist(accounts$score)
+```
+
+
+```{r}
+accounts %>% select(score, First, Last, program, Team) %>%
+  arrange(score)
+```
+
+```{r}
+boxplot(score ~ Team, data=accounts)
 ```
 
