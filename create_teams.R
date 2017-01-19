@@ -8,7 +8,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 if(length(args)!=3)
 {
-  cat("Usage: create_accounts.R <account file> <organization> <prefix>\n")
+  cat("Usage: create_teams.R <account file> <organization> <prefix>\n")
   stop()
 }
 

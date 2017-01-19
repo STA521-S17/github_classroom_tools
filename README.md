@@ -31,9 +31,10 @@ verified issue invitations.
   
   where `<organization_name>` is the github name for the class
   organization.   Currently if there are errors in any user names the
-  script crashes.
+  script crashes.   Be sure to run check_accounts first and orrect any problems.
 
   `Rscript invite_accounts.R Accounts.csv  STA521-S17`
+  
 
 * analyze_teams.R:  A script to read in survey data and create a score
   based on backgound to help with team creation.  Use this to assign a
@@ -42,8 +43,8 @@ verified issue invitations.
 * create_teams.R:  Run script to create and add Teams to github.
 
 
- `Rscript create_accounts.R Accounts.csv  STA521-S17 Team`
+ `Rscript create_teams.R Accounts.csv  STA521-S17 Team`
 
 or
 
- `Rscript create_accounts.R <Accounts file> <organization> <Team_Prefix>
+ `Rscript create_teams.R <Accounts file> <organization> <Team_Prefix>
