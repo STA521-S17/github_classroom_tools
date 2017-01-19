@@ -40,7 +40,8 @@ verified issue invitations.
   based on backgound to help with team creation.  Use this to assign a
   Team number for each student.  Add a column for Team to Accounts.csv
 
-* create_teams.R:  Run script to create and add Teams to github.
+* create_teams.R:  Run script to create and add Teams to github.  Do
+  not add on github!
 
 
  `Rscript create_teams.R Accounts.csv  STA521-S17 Team`
@@ -48,3 +49,13 @@ verified issue invitations.
 or
 
  `Rscript create_teams.R <Accounts file> <organization> <Team_Prefix>
+
+
+* add_members_team.R:  Run script to add members to Teams to github.
+
+
+ `Rscript add_members_teams.R Accounts.csv  STA521-S17 Team`
+
+or
+
+ `Rscript add_members_teams.R <Accounts file> <organization> <Team_Prefix>

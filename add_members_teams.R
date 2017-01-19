@@ -8,7 +8,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 if(length(args)!=3)
 {
-  cat("Usage: create_teams.R <account file> <organization> <prefix>\n")
+  cat("Usage: add_members_team.R <account file> <organization> <prefix>\n")
   stop()
 }
 
@@ -29,20 +29,23 @@ teams = team_info$Team %>%
 token = readLines("secret/github_token")
 
 
-for(team in teams)
-{
-  Sys.sleep(0.2)
-
-  cat("Adding ", team, "...\n", sep="")
-  gh("POST /orgs/:org/teams", 
-     org=org, 
-     name=team, privacy="closed",
-     .token=token)
-}
 
 teams = gh("/orgs/:org/teams", org=org, .token=token)
 team_ids = sapply(teams, function(x) x$id)
 names(team_ids) = sapply(teams, function(x) x$name)
 
-teams
+for(i in seq_len(nrow(team_info)))
+{
+    Sys.sleep(0.2)
 
+    team = team_info$Team[i]
+    acc = team_info$Account[i]
+    id = team_ids[team]
+
+    cat("Adding ", acc, " to ", team, "...\n", sep="")
+
+    gh("PUT /teams/:id/memberships/:username", 
+       id=id, username=acc,
+       role="member",
+       .token=token)
+}
