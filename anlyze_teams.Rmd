@@ -25,12 +25,12 @@ accounts = read.csv("Accounts.csv", header=T) %>%
 accounts = mutate(accounts, score = 
           (R.User != "have no background") +
           (Bayesian != "have no background") + 
-          (git != "have no background") +
-          (unix != "have no background") +
-          (STA601 == "Yes") +
-          (STA523 == "Yes") +
-          (STA561 == "Yes") +
-          (ML != "have no background")
+          (git != "have no background") #+
+#         unix != "have no background") +
+#         (STA601 == "Yes") +
+#          (STA523 == "Yes") +
+#          (STA561 == "Yes") +
+#         (ML != "have no background")
 )
 
 ```
@@ -41,8 +41,8 @@ hist(accounts$score)
 
 
 ```{r}
-accounts %>% select(score, First, Last, program, Team) %>%
-  arrange(score)
+accounts %>% mutate(name = paste(First, Last)) %>% select(score, name, program, Team) %>%
+  arrange(Team)
 ```
 
 ```{r}
