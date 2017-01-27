@@ -6,3 +6,4 @@ Accounts.csv
 .RData
 .Rhistory
 github_classroom_tools.Rproj
+*.html
